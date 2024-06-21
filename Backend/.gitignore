@@ -1,6 +1,6 @@
 \.env
 \node_modules
-\files
+
 
 catalyst.json
 app-config.json
