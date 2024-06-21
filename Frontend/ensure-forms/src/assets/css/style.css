@@ -1,0 +1,33 @@
+body{
+    overflow-x: hidden;
+}
+
+
+.fileName:hover{
+    color: red;
+}
+
+.downloadIcon{
+    height: 25px;
+    width: 25px;
+}
+.downloadIcon:hover{
+    background: rgb(135, 255, 135);
+}
+.cursor_pointer{
+    cursor: pointer;
+}
+
+.studentPhoto{
+    height: 80px;
+  
+}
+
+.exportPdf:hover{
+    background-color: rgb(175, 255, 175);
+}
+
+
+.loadingImg{
+    height: 20px;
+}

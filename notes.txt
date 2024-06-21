@@ -1,0 +1,90 @@
+https://codepen.io/piyushpd139/pen/ExmpXLz
+
+https://codepen.io/ankithingarajiya/pen/KKoBXKB
+
+https://codepen.io/legoflust/pen/ZEKjMNQ
+
+
+npm install react-icons --save
+
+
+submitted form
+
+
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+export const SubmittedForms = () => {
+    const [userData , setUserData] = useState([]);
+    useEffect(()=>{
+
+        (async ()=>{
+            const response = await axios.get('http://localhost:3000/forms/getSubmittedForms');
+            console.log(response.data);
+            if(response.data.status == 1){
+                setUserData(response.data.userDetails)
+            }
+        })();
+
+    },[]);
+
+    const openFile=(file)=>{
+      window.open(`http://localhost:3000/${file}`,"_blank" , "noopener")
+    }
+
+    const downloadFile = async (file) => {
+      try {
+          const response = await axios.get(`http://localhost:3000/${file}`, {
+              responseType: 'blob', // Important
+          });
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', file); // or any other extension
+          document.body.appendChild(link);
+          link.click();
+          window.URL.revokeObjectURL(url);
+      } catch (error) {
+          console.error('Error during file download:', error);
+      }
+  };
+
+  return (
+    <div className="conatiner">
+      <div className="row">
+        <div className="col"></div>
+        <div className="col-md-8 col">
+          <table className="table">
+            <thead>
+              <tr>
+                <td>S.No</td>
+                <td scope="col">First Name</td>
+                <td scope="col">Last Name</td>
+                <td scope="col">Email</td>
+                <td scope="col">Mobile No.</td>
+                <td scope="col">Files</td>
+              </tr>
+            </thead>
+            <tbody>
+
+                {userData && userData.map((item , index)=>{
+                    return(
+                        <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{item.FirstName}</td>
+                            <td>{item.LastName}</td>
+                            <td>{item.Email}</td>
+                            <td>{item.MobileNumber}</td>
+                            <td><span onClick={()=>openFile(item.certificateFile)} className="text-truncate cursor_pointer" style={{ maxWidth: '150px' }}>{item.certificateFile.substr(13,20).concat("...") + item.certificateFile.split('.')[1]}</span> <span onClick={()=>downloadFile(item.certificateFile)} className="text-success cursor_pointer">Download file</span> </td>
+                        </tr>
+                    )
+                })}
+
+            </tbody>
+          </table>
+        </div>
+        <div className="col"></div>
+      </div>
+    </div>
+  );
+};
