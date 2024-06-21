@@ -10,7 +10,7 @@ export const SubmittedForms = () => {
   useEffect(() => {
     (async () => {
       const response = await axios.get(
-        "https://ensuresafeforms.onrender.com/forms/getSubmittedForms"
+        "https://ensuresafepaidbackend.onrender.com/forms/getSubmittedForms"
       );
       console.log(response.data);
       if (response.data.status == 1) {
@@ -20,12 +20,12 @@ export const SubmittedForms = () => {
   }, []);
 
   const openFile = (file) => {
-    window.open(`https://ensuresafeforms.onrender.com/${file}`, "_blank", "noopener");
+    window.open(`https://ensuresafepaidbackend.onrender.com/${file}`, "_blank", "noopener");
   };
 
   const downloadFile = async (file) => {
     try {
-      const response = await axios.get(`https://ensuresafeforms.onrender.com/${file}`, {
+      const response = await axios.get(`https://ensuresafepaidbackend.onrender.com/${file}`, {
         responseType: "blob", // Important
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -57,8 +57,8 @@ export const SubmittedForms = () => {
 const downloadDocPdf = async () => {
     try {
         setLoading(true);
-        const response = await axios.get('https://ensuresafeforms.onrender.com/forms/exportFormPdf');
-        const url = `https://ensuresafeforms.onrender.com/${response.data.filePath}`; // Use the file path from the backend
+        const response = await axios.get('https://ensuresafepaidbackend.onrender.com/forms/exportFormPdf');
+        const url = `https://ensuresafepaidbackend.onrender.com/${response.data.filePath}`; // Use the file path from the backend
         window.open(url, '_blank'); // Open the PDF in a new tab
         setLoading(false);
     } catch (error) {
@@ -121,7 +121,7 @@ const downloadDocPdf = async () => {
                             );
                           })}
                       </td>
-                      <td className="d-flex justify-content-center"><img className="studentPhoto cursor_pointer" onClick={()=>openFile(item.Photo)} src={`https://ensuresafeforms.onrender.com/${item.Photo}`} /></td>
+                      <td className="d-flex justify-content-center"><img className="studentPhoto cursor_pointer" onClick={()=>openFile(item.Photo)} src={`https://ensuresafepaidbackend.onrender.com/${item.Photo}`} /></td>
                       
                     </tr>
                   );
@@ -148,3 +148,9 @@ const downloadDocPdf = async () => {
 
 
 // https://ensure-backend-forms-rdxidqb26-balajik27s-projects.vercel.app
+
+
+//paid
+
+// https://ensuresafepaidbackend.onrender.com
+

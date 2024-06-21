@@ -70,7 +70,7 @@ export const MyForm = ()=>{
 
 
       if (willDelete) {
-        const response = await axios.post('https://ensuresafeforms.onrender.com/forms/submitForm',formData,{
+        const response = await axios.post('https://ensuresafepaidbackend.onrender.com/forms/submitForm',formData,{
           headers : {"Content-Type" : "multipart/form-data"}
         });
         console.log(response.data.message)
